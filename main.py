@@ -11,12 +11,13 @@ st.set_page_config(
     page_icon=None,
     layout="wide",
     initial_sidebar_state="auto",)
-st.sidebar.title('Transcrição de Audio')
+st.header('App para realizar a Transcrição de arquivos de Audio para textos. ')
+st.text('Somente arquivos de audio no formato .WAV com no máximo 1m:30s do idioma PT-BR')
 
 
 def file_audio():
     # Recebe o arquivo de texto do usuário
-    uploaded_files = st.file_uploader("Selecione ou arraste seu arquivo: ", accept_multiple_files=True)
+    uploaded_files = st.sidebar.file_uploader("Selecione ou arraste seu arquivo: ", accept_multiple_files=True)
 
     if uploaded_files is not None:
         for uploaded_file in uploaded_files:
