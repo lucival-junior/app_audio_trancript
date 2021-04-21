@@ -4,6 +4,7 @@
 import streamlit as st
 import speech_recognition as sr
 import base64
+import streamlit.components.v1 as components
 
 
 st.set_page_config(
@@ -11,13 +12,38 @@ st.set_page_config(
     page_icon=None,
     layout="wide",
     initial_sidebar_state="auto",)
-st.header('App para realizar a Transcrição de arquivos de Audio para textos. ')
-st.text('Somente arquivos de audio no formato .WAV com no máximo 1m:30s do idioma PT-BR')
+
+
+def vlibras(txt_vlibras):
+    components.html(
+        f"""
+        <body> 
+            <p>{txt_vlibras}</p>
+            <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+              <div class="vw-plugin-top-wrapper"></div>
+            </div>
+            </div>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            </script>
+        </body>
+        """,
+        height=650,
+    )
+
+
+st.sidebar.subheader('🎵️Transcritor de áudio📜')
+st.sidebar.write('App para transcrever pequenos trexos de áudios,'
+                ' que podem variar entre **1 e 2 minutos** com o idoma Português - Brasil'
+                ' No momento apenas arquivos no formato **.WAV**')
 
 
 def file_audio():
     # Recebe o arquivo de texto do usuário
-    uploaded_files = st.sidebar.file_uploader("Selecione ou arraste seu arquivo: ", accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Selecione ou arraste seu arquivo: ", accept_multiple_files=True)
 
     if uploaded_files is not None:
         for uploaded_file in uploaded_files:
@@ -41,20 +67,23 @@ def file_audio():
 
                     with open(path, "w", encoding='utf-8') as file:
                         file.write(transcripted)
-                    download_file(path)
+                    download_file(path, transcripted)
 
 
-def download_file(file_name):
+def download_file(file_name, txt_vlibras):
     with open(file_name, "rb") as file:
         byte = file.read()
         b64 = base64.b64encode(byte).decode()
         href = f'<a href="data:file/txt;base64,{b64}" download="{file_name}">Baixar Transcrição</a>'
         st.markdown(href, unsafe_allow_html=True)
+        enable_libras = st.checkbox('Versão para LIBRAS', value=True)
+        if enable_libras:
+            vlibras(txt_vlibras)
 
 
 def transcript(transcripts):
-    lowercase = transcripts.lower()
-    st.write("**Resultado: **", lowercase)
+    texto_formatado = transcripts.lower()
+    st.write("**Resultado: **", texto_formatado)
 
 
 if __name__ == '__main__':
