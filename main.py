@@ -45,15 +45,13 @@ def arquivo_audio_exemplo():
     with open('file_exemple/uma_lembraca.wav', "rb") as file:
         byte = file.read()
         b64 = base64.b64encode(byte).decode()
-        href = f'<a href="data:file/txt;base64,{b64}" download="uma_lembraca.wav">Fazer Download</a>'
+        href = f'<a href="data:file/txt;base64,{b64}" download="uma_lembraca.wav">Baixar arquivo de exemplo</a>'
         st.sidebar.markdown(href, unsafe_allow_html=True)
 
 def file_audio():
     # Recebe o arquivo de texto do usuário
     uploaded_files = st.file_uploader("Selecione ou arraste seu arquivo: ", accept_multiple_files=True)
-    audio_exemplo = st.sidebar.button('Baixar áudio de exemplo')
-    if audio_exemplo:
-        arquivo_audio_exemplo()
+    arquivo_audio_exemplo()
     if uploaded_files is not None:
         for uploaded_file in uploaded_files:
             bytes_data = uploaded_file.read()
