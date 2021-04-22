@@ -68,6 +68,7 @@ def download_file(file_name, transcripted):
         st.markdown(href, unsafe_allow_html=True)
         corpo_html(transcripted)
 
+
 def corpo_html(txt_trasncrito):
     components.html(
         f"""
@@ -110,6 +111,7 @@ def corpo_html(txt_trasncrito):
         </div>
         """,
         height=600,
+        scrolling=True,
     )
 
 
