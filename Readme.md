@@ -1,8 +1,6 @@
-
-
-<h4 align="center"> 
+<h2 align="center"> 
 	🚧  Em construção 🚧
-</h4>
+</h2>
 
 ## 🎵🎙️🗒️ Sobre o projeto
 
