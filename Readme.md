@@ -25,8 +25,8 @@ Este projeto é divido em:
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Python](https://www.python.org/). 
-IDE [Pycharm](https://www.jetbrains.com/pt-br/pycharm/download/#section=windows) ou [VSCode](https://code.visualstudio.com/)
+[Git](https://git-scm.com) e [Python](https://www.python.org/). 
+Uma boa IDE [Pycharm](https://www.jetbrains.com/pt-br/pycharm/download/#section=windows) ou [VSCode](https://code.visualstudio.com/)
 
 ####  Rodando
 
